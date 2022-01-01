@@ -1,9 +1,17 @@
-def get_smaller_than_or_equal_to(array, k):
-    if array == []:
-        return []
-    elif array[0] <= k:
-        return [array[0]] + get_smaller_than_or_equal_to(array[1:], k)
-    else:
-        return get_smaller_than_or_equal_to(array[1:], k)
+def wordBreak(s, wordDict):
+    hashDict = {}
+    for word in wordDict:
+        for item in word:
+            if item in hashDict:
+                hashDict[item] += 1
+            else:
+                hashDict[item] = 1
+    for char in s:
+        if char not in hashDict or hashDict[char] == 0:
+            return False
+        else:
+            hashDict[char] -= 1
+    
+    return True,
 
-get_smaller_than_or_equal_to([10, 7, 1, 6, 3], 5)
+wordBreak("applepenapple",["apple","pen"])
